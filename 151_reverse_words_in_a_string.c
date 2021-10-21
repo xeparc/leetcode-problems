@@ -48,46 +48,92 @@
 
 #include "stdlib.h"
 
+/*  ----------------------
+    First written solution
+*/
+// char * reverseWords(char * s){
+//     // skip leading white space
+//     while (*s == ' ')
+//         s++;
+//     int N = 0;
+//     int i = 0;
+//     int whitespaces = 0;
+//     int characters = 0;
+//     while(s[i]){
+//         if (s[i] == ' '){
+//             whitespaces++;
+//             int n = 0;
+//             while (s[i] == ' ')
+//                 i++, n++;
+//             if (s[i] == 0)
+//                 whitespaces--;
+//             else
+//                 N += n;
+//         }
+//         else{
+//             N++;
+//             characters++;
+//             i++;
+//         }
+//     }
+//     char *result = (char*)malloc((characters + whitespaces + 1) * sizeof(char));
+//     N--;
+//     int k = 0;
+//     while (N >= 0){
+//         int j = N;
+//         for (; j >= 0 && s[j] != ' '; j--);
+//         strncpy(result + k, s + j + 1, N - j);
+//         k += N - j;
+//         while(j >= 0 && s[j] == ' ')
+//             j--;
+//         N = j;
+//         if (j >= 0)
+//             result[k++] = ' ';
+//     }
+//     result[whitespaces + characters] = 0;
+//     return result;
+// }
+
+
+void reverse(char *begin, char *end)
+{
+    while (begin < end){
+        char c = *begin;
+        *begin = *end;
+        *end = c;
+        begin++, end--;
+    }
+}
 
 char * reverseWords(char * s){
-    // skip leading white space
-    while (*s == ' ')
-        s++;
-    int N = 0;
-    int i = 0;
-    int whitespaces = 0;
-    int characters = 0;
-    while(s[i]){
-        if (s[i] == ' '){
-            whitespaces++;
-            int n = 0;
-            while (s[i] == ' ')
-                i++, n++;
-            if (s[i] == 0)
-                whitespaces--;
-            else
-                N += n;
-        }
-        else{
-            N++;
-            characters++;
-            i++;
+    // Reverse whole string
+    int N = strlen(s);
+    reverse(s, s + N - 1);
+    // Reverse words
+    for (int i = 0; i < N;){
+        while (s[i] == ' ') i++;
+        // i points at the first non-whitespace character or end of string
+        if (i < N){
+            int j = i;
+            while (j < N && s[j] != ' ') j++;
+            // j points at the first whitespace character or end of string
+            reverse(s + i, s + j - 1);
+            i = j;
         }
     }
-    char *result = (char*)malloc((characters + whitespaces + 1) * sizeof(char));
-    N--;
     int k = 0;
-    while (N >= 0){
-        int j = N;
-        for (; j >= 0 && s[j] != ' '; j--);
-        strncpy(result + k, s + j + 1, N - j);
-        k += N - j;
-        while(j >= 0 && s[j] == ' ')
-            j--;
-        N = j;
-        if (j >= 0)
-            result[k++] = ' ';
+    int i = 0;
+    // Clear leading whitespaces
+    while (s[i] == ' ') i++;
+    // Clear excess whitespaces between words
+    while (i < N){
+        if (s[i] == ' '){
+            while (i < N && s[i] == ' ') i++;
+            if (i < N) s[k++] = ' ';
+        }
+        else
+            s[k++] = s[i++];
     }
-    result[whitespaces + characters] = 0;
-    return result;
+    s[k] = 0;
+    return s;
 }
