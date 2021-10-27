@@ -1,5 +1,5 @@
 // ****************************************************************************
-// 
+//
 // 75. Sort Colors
 // https://leetcode.com/problems/sort-colors/
 //
@@ -26,6 +26,10 @@
 
 
 #include <utility>
+#include <vector>
+
+using namespace std;
+
 
 class Solution {
 public:
