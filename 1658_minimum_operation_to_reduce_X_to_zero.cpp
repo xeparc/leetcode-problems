@@ -4,8 +4,8 @@
 // https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 //
 // ***************************************************************************
-// // 
-// // 
+// 
+// 
 // You are given an integer array nums and an integer x. In one operation,
 // you can either remove the leftmost or the rightmost element from the
 // array nums and subtract its value from x. Note that this modifies the
@@ -97,13 +97,3 @@ public:
         return maxlen == -1 ? -1 : nums.size() - maxlen;
     }
 };
-
-//         v
-// 1,  2,  6, 8, 11
-// 11, 10, 9, 5, 3
-//            ^
-
-//         v
-//  3, 5,  25, 26, 27, 30
-// 30, 27, 25,  5,  4, 3
-//          ^
