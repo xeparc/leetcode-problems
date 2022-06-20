@@ -45,6 +45,10 @@ using namespace std;
 class Solution {
 public:
     int getXORSum(vector<int>& arr1, vector<int>& arr2) {
+        // Consider
+        // (a & b) ^ (a & c)
+        //      if a == 1 => result = 1 iff b != c
+        //      if a == 0 => result = 0
         int xorbits = 0;
         for (int x : arr2)
             xorbits = xorbits ^ x;
@@ -55,13 +59,3 @@ public:
         return result;
     }
 };
-// 0 1 0 .. 0 1 0 1 0
-// 0 0 1 .. 0 1 0 1 1
-// 0 0 0 .. 0 1 1 0 1
-// 0 0 0 .. 1 0 1 1 1
-// ==================
-// 0 0 0  0 0 1 1 1 1
-
-// (a & b) ^ (a & c)
-// a == 1: 1 if b != c
-// a == 0: 0
