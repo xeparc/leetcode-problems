@@ -28,7 +28,7 @@
 // Output: 9
 // 
 // Constraints:
-// * 1 <= n.length <= 105
+// * 1 <= n.length <= 10^5
 // * n consists of only digits.
 // * n does not contain any leading zeros and represents a positive integer.
 
